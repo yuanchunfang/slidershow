@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>  
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="css.css" />
+<script type="text/javascript" src="jquery-3.4.1.js"></script>
+</head>  
+<body>
+    <div id="wrap">
+        <div id="container">
+            <div class="list">
+                <img src="img/1.jpg" alt="1" />
+                <img src="img/2.jpg" alt="2" />
+                <img src="img/3.jpg" alt="3"/>
+                <img src="img/4.jpg" alt="4"/>
+            </div>
+            <div class="prev"><img src="img/banner_left.png"></div>
+            <div class="next"><img src="img/banner_right.png"></div>
+        </div>
+        <div class="login ">
+            <div class="login-form clearfix">
+                <div class="email-input">
+                    <input type="text" maxlength="11"  placeholder="E-mail">
+                </div>
+                <div class="select">
+                <div class="select-main">
+                    <div class="select-arrow"></div>
+                    <div class="select-set">structure 2</div>
+                </div>
+                </div>
+                <div>
+                    <div class="botton-wrap">
+                        <button class="buttonT">LET'S START</button>
+                    </div>
+                </div>
+                </div>
+    </div>
+    <div class="footer">
+        <div class="content-center">
+             <img src="img\heart.gif">
+             <h2>Your Next Move</h2>
+             <p>Helping talented students unlock their full potential.help us help them thrive</p>
+        </div>
+        <div class="footer-wrap clearfix" >
+            <div class="one">
+              <img src="img\clock.gif">
+              <h4>EXPERIENCE </h4>
+              <p> aaaaaaaaaaaaaaaaaaaaaaaaaa
+              </p>    
+            </div>
+            <div class="one">
+                <img src="img\clock.gif">
+                <h4>EXPERIENCE </h4>
+                <p> aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                </p>    
+              </div>
+              <div class="one">
+                <img src="img\clock.gif">
+                <h4>EXPERIENCE </h4>
+                <p> aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                </p>    
+              </div>
+              <div class="one">
+                <img src="img\clock.gif">
+                <h4>EXPERIENCE </h4>
+                <p> aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                </p>    
+              </div>
+        </div>
+
+    </div>
+    </div>
+    <script type="text/javascript">
+        window.onload=function(){
+            var container=document.getElementById("container");
+            var list_img=document.querySelectorAll(".list>img");
+            var item=document.getElementsByClassName(".item>span");// 返回的是该类名全部元素
+            var prev=document.querySelector(".prev"); // 返回的是该选择器第一个元素
+            var next=document.querySelector(".next");
+            function InitMove(index){
+                for(var i=0;i<list_img.length;i++){
+                    list_img[i].style.opacity='0'
+                }
+                    list_img[index].style.opacity='1'
+            }
+            InitMove(0); // 第一次初始化 
+
+            // 定义轮播函数
+            var count=1;
+            function FMove(){
+                if(count==list_img.length){
+                    count=0
+                }
+                InitMove(count);
+                count++
+            }
+            //  设置自动轮播定时器
+            var scollMove=setInterval(FMove,3000);
+            function stop(){
+                clearInterval(timer);
+            }
+            console.log(prev);
+            prev.onclick=function(){
+               clearInterval(scollMove);
+               if(count==0){
+                   count=list_img.length
+               }
+               count--
+               InitMove(count)
+               scollMove=setInterval(FMove,3000);
+           }
+            next.onclick=function(){
+               clearInterval(scollMove);
+               FMove()
+               scollMove=setInterval(FMove,3000);
+           }
+        }  
+        </script>
+</body>
+</html>
